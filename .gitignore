@@ -1,0 +1,220 @@
+# ==============================================================================
+# Git Ignore Configuration
+# Project: AI-Based Crop Health Monitoring, Disease Detection and Agricultural Decision Support System
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Operating System Files
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# ------------------------------------------------------------------------------
+# IDEs and Text Editors
+# ------------------------------------------------------------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# ------------------------------------------------------------------------------
+# Environment Variables and Credentials
+# ------------------------------------------------------------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+!*.env.example
+.env.*
+!.env.example
+
+# ------------------------------------------------------------------------------
+# Node.js & React (Frontend & Backend)
+# ------------------------------------------------------------------------------
+node_modules/
+jspm_packages/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.cache/
+.parcel-cache/
+.turbo/
+*.tsbuildinfo
+
+# ------------------------------------------------------------------------------
+# Python & Virtual Environments (ML, CV & Recommendation Services)
+# ------------------------------------------------------------------------------
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Unit tests, coverage, linters
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+*/.ipynb_checkpoints/*
+
+# ------------------------------------------------------------------------------
+# Machine Learning & Computer Vision: Large Datasets & Archives
+# ------------------------------------------------------------------------------
+# Raw and processed datasets (files inside data directories)
+**/data/raw/*
+**/data/processed/*
+**/data/verified-agricultural-data/*
+
+# Dataset formats (tabular, database, scientific)
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.h5py
+*.sqlite
+*.sqlite3
+*.db
+
+# Dataset images and video files
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.tiff
+*.tif
+*.webp
+*.gif
+*.mp4
+*.avi
+*.mov
+
+# Large archive and compressed files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.gz
+*.bz2
+
+# ------------------------------------------------------------------------------
+# Machine Learning & Computer Vision: Trained Models & Binary Artifacts
+# ------------------------------------------------------------------------------
+# Python Pickle & Scikit-learn / Joblib
+*.pkl
+*.pickle
+*.joblib
+
+# TensorFlow / Keras
+*.h5
+*.hdf5
+*.keras
+*.pb
+*.tflite
+
+# PyTorch
+*.pt
+*.pth
+*.pt.tar
+*.ckpt
+*.weights
+*.bin
+
+# ONNX / OpenVINO / TensorRT
+*.onnx
+*.engine
+*.plan
+
+# Model checkpoints & runs
+checkpoints/
+**/models/**/*.pkl
+**/models/**/*.joblib
+**/models/**/*.h5
+**/models/**/*.keras
+**/models/**/*.pt
+**/models/**/*.pth
+**/models/**/*.onnx
+
+# ------------------------------------------------------------------------------
+# Experiment Tracking & Logs
+# ------------------------------------------------------------------------------
+runs/
+wandb/
+.tensorboard/
+mlruns/
+lightning_logs/
+*.log
+
+# ------------------------------------------------------------------------------
+# Preserve .gitkeep Files Across All Directories
+# ------------------------------------------------------------------------------
+!.gitkeep
+!*/.gitkeep
+!**/.gitkeep

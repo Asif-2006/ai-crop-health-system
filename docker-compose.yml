@@ -1,0 +1,33 @@
+# ==============================================================================
+# Docker Compose Placeholder
+# Project: AI-Based Crop Health Monitoring, Disease Detection and Agricultural Decision Support System
+# Target Crop: Rice (Paddy)
+#
+# NOTE: This is a minimal placeholder configuration.
+# Actual application services (frontend, backend, ml-service, cv-service,
+# recommendation-service, and database) will be configured in subsequent phases.
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  # Planned services (to be configured during deployment phase):
+  # - frontend: React.js application
+  # - backend: Node.js / Express.js REST API gateway
+  # - ml-service: Python / FastAPI disease-risk prediction
+  # - cv-service: Python / FastAPI rice leaf disease detection & severity
+  # - recommendation-service: Python / FastAPI decision support engine
+  # - database: PostgreSQL / MongoDB
+
+  placeholder:
+    image: alpine:latest
+    container_name: ai_crop_health_placeholder
+    command: ["echo", "AI Crop Health System monorepo initialized. Production services to be configured in deployment phase."]
+
+networks:
+  crop-health-net:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
