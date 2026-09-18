@@ -40,7 +40,6 @@ $RECYCLE.BIN/
 .env.test.local
 .env.production.local
 *.env
-!*.env.example
 .env.*
 !.env.example
 
@@ -107,7 +106,6 @@ htmlcov/
 .nox/
 .coverage
 .coverage.*
-.cache
 nosetests.xml
 coverage.xml
 *.cover
@@ -130,6 +128,21 @@ cover/
 **/data/raw/*
 **/data/processed/*
 **/data/verified-agricultural-data/*
+
+# Specific Candidate Prediction Datasets (ML-Service)
+ml-service/data/raw/RICE.csv
+ml-service/data/processed/leafblast_forecasting_dataset.csv
+ml-service/data/raw/dapoli_rice_diseases.csv
+ml-service/data/raw/peerj-cs-07-687-s001.csv
+ml-service/data/raw/peerj-cs-07-687-s002.ipynb
+
+# Specific Computer Vision Datasets (CV-Service)
+cv-service/data/indian_rice_dataset_5932/
+cv-service/data/indian_rice_dataset_5932/**
+cv-service/data/rice_leaf_dataset_5932/
+cv-service/data/rice_leaf_dataset_5932/**
+cv-service/sample_leaf.jpg
+sample_leaf.jpg
 
 # Dataset formats (tabular, database, scientific)
 *.csv
@@ -179,13 +192,14 @@ cover/
 *.pb
 *.tflite
 
-# PyTorch
+# PyTorch & Hugging Face Weights
 *.pt
 *.pth
 *.pt.tar
 *.ckpt
 *.weights
 *.bin
+*.safetensors
 
 # ONNX / OpenVINO / TensorRT
 *.onnx
@@ -201,6 +215,10 @@ checkpoints/
 **/models/**/*.pt
 **/models/**/*.pth
 **/models/**/*.onnx
+**/models/**/*.bin
+**/models/**/*.safetensors
+**/models/**/splits.json
+**/.cache/
 
 # ------------------------------------------------------------------------------
 # Experiment Tracking & Logs
@@ -211,6 +229,30 @@ wandb/
 mlruns/
 lightning_logs/
 *.log
+
+# ------------------------------------------------------------------------------
+# Whitelist: Source Code, Reports, Figures, and Evaluation Outputs
+# ------------------------------------------------------------------------------
+# Allow evaluation outputs and report artifacts to be committed
+!cv-service/evaluation_output/
+!cv-service/evaluation_output/**
+!cv-service/reports/
+!cv-service/reports/**
+!cv-service/test_images/
+!cv-service/test_images/**
+
+# Allow model configuration and documentation files
+!cv-service/models/**/config.json
+!cv-service/models/**/results.json
+!cv-service/models/**/README.md
+!cv-service/models/**/*.py
+
+# Allow ML experiments, figures, and results
+!ml-service/experiments/figures/
+!ml-service/experiments/figures/**
+!ml-service/experiments/results/
+!ml-service/experiments/results/**
+!ml-service/notebooks/*.ipynb
 
 # ------------------------------------------------------------------------------
 # Preserve .gitkeep Files Across All Directories

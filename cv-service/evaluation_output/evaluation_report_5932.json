@@ -1,0 +1,70 @@
+{
+  "dataset_name": "Indian Rice Leaf Disease Dataset (Sethy et al.)",
+  "total_images": 5932,
+  "correct_predictions": 5625,
+  "overall_accuracy": 0.9482467970330412,
+  "macro_precision": 0.4790788758857047,
+  "macro_recall": 0.4733664772727273,
+  "macro_f1": 0.474207606496815,
+  "weighted_f1": 0.9476983655773181,
+  "average_confidence": 0.8641816999484419,
+  "evaluation_time_seconds": 255.27519011497498,
+  "per_class_performance": {
+    "Bacterial Blight": {
+      "precision": 0.9284037558685446,
+      "recall": 0.9987373737373737,
+      "f1_score": 0.962287104622871,
+      "support": 1584
+    },
+    "Brown Spot": {
+      "precision": 0.9065155807365439,
+      "recall": 1.0,
+      "f1_score": 0.950965824665676,
+      "support": 1600
+    },
+    "Leaf Blast": {
+      "precision": 1.0,
+      "recall": 0.7881944444444444,
+      "f1_score": 0.8815533980582524,
+      "support": 1440
+    },
+    "Tungro": {
+      "precision": 0.9977116704805492,
+      "recall": 1.0,
+      "f1_score": 0.9988545246277205,
+      "support": 1308
+    }
+  },
+  "confusion_matrix": [
+    [
+      1582,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1600,
+      0,
+      0
+    ],
+    [
+      122,
+      165,
+      1135,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      1308
+    ]
+  ],
+  "classes": [
+    "Bacterial Blight",
+    "Brown Spot",
+    "Leaf Blast",
+    "Tungro"
+  ]
+}
