@@ -55,7 +55,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen text-slate-100 flex flex-col font-['Manrope']">
       {/* Header */}
       <Header
         activeTab={activeTab}
@@ -69,14 +69,16 @@ export default function App() {
         
         {/* Banner if backend is running live */}
         {backendStatus.online && (
-          <div className="mb-6 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-between text-xs text-emerald-300">
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <div className="card-hover mb-6 p-4 rounded-2xl bg-gradient-to-r from-emerald-950/70 via-maroon-950/60 to-emerald-950/70 border border-emerald-500/40 flex items-center justify-between text-xs text-emerald-200 backdrop-blur-md">
+            <div className="flex items-center space-x-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>
-                <strong>Connected to Live FastAPI Backend:</strong> EfficientNet-B0 active on {backendStatus.device} with {backendStatus.classes_count || 17} rice pathology heads.
+                <strong className="text-white">Connected to Live FastAPI Backend:</strong> EfficientNet-B0 active on <code className="bg-black/30 px-1.5 py-0.5 rounded text-emerald-300">{backendStatus.device}</code> with {backendStatus.classes_count || 17} rice pathology heads.
               </span>
             </div>
-            <span className="font-mono text-[10px] bg-emerald-900/60 px-2 py-0.5 rounded">port 8000</span>
+            <span className="font-mono text-[11px] bg-emerald-900/60 border border-emerald-400/30 px-2.5 py-0.5 rounded-full text-emerald-200">
+              port 8000
+            </span>
           </div>
         )}
 
@@ -85,22 +87,27 @@ export default function App() {
           <div className="space-y-8">
             
             {/* Hero / Introduction banner */}
-            <div className="relative rounded-2xl bg-gradient-to-r from-emerald-950/80 via-slate-900 to-slate-900 border border-emerald-500/20 p-6 sm:p-8 overflow-hidden shadow-2xl">
+            <div className="card-hover relative rounded-3xl bg-gradient-to-r from-maroon-950/90 via-maroon-900/80 to-maroon-950/90 border border-white/20 p-6 sm:p-10 overflow-hidden shadow-2xl backdrop-blur-md">
+              
+              {/* Maroon & White Luminous Glows */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/20 via-rose-500/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-maroon-600/20 rounded-full blur-2xl pointer-events-none"></div>
+
               <div className="max-w-2xl relative z-10">
-                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-3">
-                  <Sparkles className="w-3.5 h-3.5" />
+                <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/25 text-rose-100 text-xs font-bold mb-4 shadow-sm backdrop-blur-sm">
+                  <Sparkles className="w-3.5 h-3.5 text-white" />
                   <span>Rice Leaf Pathology Diagnostic Engine</span>
                 </div>
-                <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
-                  Intelligent Rice Leaf <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-green-300">Disease Detection</span>
+                <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                  Intelligent Rice Leaf <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-200 via-white to-rose-300">
+                    Disease Detection
+                  </span>
                 </h1>
-                <p className="text-sm text-slate-300 mt-2 leading-relaxed">
-                  Upload close-up paddy photographs to detect 17 rice leaf diseases with 94.82% benchmark accuracy. Get instant severity grading, lesion area estimation, and expert agronomic treatment prescriptions.
+                <p className="text-sm sm:text-base text-rose-100/90 mt-3 leading-relaxed font-normal">
+                  Upload field photographs to instantly diagnose 17 paddy leaf pathologies with <span className="text-white font-bold underline decoration-white/40 decoration-2">94.82% benchmark accuracy</span>. Receive immediate severity grading, lesion area quantification, and expert agronomic guidance.
                 </p>
               </div>
-
-              {/* Decorative elements */}
-              <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-emerald-500/5 blur-3xl rounded-full pointer-events-none"></div>
             </div>
 
             {/* Input Section */}
@@ -151,13 +158,13 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <footer className="border-t border-maroon-900/60 bg-maroon-950/80 backdrop-blur-md py-8 text-center text-xs text-rose-200/60 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
-            AI-Based Crop Health Monitoring System · Computer Vision Service (<span className="text-emerald-400 font-mono">cv-service</span>)
+            AI-Based Crop Health Monitoring System · Computer Vision Service (<span className="text-white font-mono font-bold">cv-service</span>)
           </p>
-          <p className="text-slate-600">
-            Trained on 17 Paddy Pathologies · EfficientNet-B0 Backbone
+          <p className="text-rose-200/50">
+            17 Paddy Pathologies Supported · EfficientNet-B0 Backbone
           </p>
         </div>
       </footer>

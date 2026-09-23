@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RICE_DISEASES } from '../../data/riceDiseases';
-import { Search, Filter, Bug, Sprout, ShieldAlert, Sparkles, ChevronRight, X, Pill, Shield, ThermometerSun } from 'lucide-react';
+import { Search, Sprout, ChevronRight, X, Pill, Shield, ThermometerSun } from 'lucide-react';
 
 export default function DiseaseCatalog() {
   const [search, setSearch] = useState('');
@@ -32,30 +32,30 @@ export default function DiseaseCatalog() {
     <div className="space-y-6">
       
       {/* Search & Filter Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div className="card-hover bg-maroon-950/80 border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold text-white flex items-center space-x-2">
-              <Sprout className="w-5 h-5 text-emerald-400" />
+            <h2 className="text-2xl font-bold text-white flex items-center space-x-2.5">
+              <Sprout className="w-6 h-6 text-rose-300" />
               <span>17 Rice Leaf Conditions & Pathologies</span>
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs sm:text-sm text-rose-100/70 mt-1">
               Comprehensive clinical database supported natively by the EfficientNet-B0 architecture
             </p>
           </div>
 
           {/* Search Input */}
           <div className="relative w-full md:w-80">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-rose-200 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search disease, pathogen, symptom..."
-              className="w-full pl-10 pr-4 py-2 bg-slate-950/80 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+              placeholder="Search pathology, pathogen, symptom..."
+              className="w-full pl-10 pr-4 py-2.5 bg-black/40 border border-white/20 rounded-2xl text-xs text-white placeholder-rose-200/50 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all"
             />
             {search && (
-              <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white">
+              <button onClick={() => setSearch('')} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-rose-200 hover:text-white">
                 <X className="w-3.5 h-3.5" />
               </button>
             )}
@@ -63,20 +63,20 @@ export default function DiseaseCatalog() {
         </div>
 
         {/* Type Filter Pills */}
-        <div className="flex flex-wrap gap-2 mt-5 pt-4 border-t border-slate-800">
+        <div className="flex flex-wrap gap-2.5 mt-6 pt-5 border-t border-white/15">
           {Object.entries(typeCounts).map(([type, count]) => (
             <button
               key={type}
               onClick={() => setSelectedType(type)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-2 transition-all ${
+              className={`card-hover px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition-all duration-300 ${
                 selectedType === type
-                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
-                  : 'bg-slate-950/60 text-slate-400 hover:text-slate-200 border border-slate-800'
+                  ? 'bg-gradient-to-r from-maroon-700 to-rose-700 text-white shadow-lg border border-white/30'
+                  : 'bg-black/30 text-rose-100/80 hover:text-white border border-white/15'
               }`}
             >
               <span>{type}</span>
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                selectedType === type ? 'bg-emerald-800 text-white' : 'bg-slate-800 text-slate-400'
+              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
+                selectedType === type ? 'bg-white/20 text-white' : 'bg-black/40 text-rose-200'
               }`}>
                 {count}
               </span>
@@ -86,47 +86,47 @@ export default function DiseaseCatalog() {
       </div>
 
       {/* Disease Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredDiseases.map((disease) => {
           const typeColor = {
-            Fungal: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
-            Bacterial: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-            Viral: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-            'Insect Pest': 'bg-rose-500/10 text-rose-400 border-rose-500/30',
-            Healthy: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-          }[disease.type] || 'bg-slate-800 text-slate-300 border-slate-700';
+            Fungal: 'bg-purple-500/20 text-purple-200 border-purple-400/40',
+            Bacterial: 'bg-blue-500/20 text-blue-200 border-blue-400/40',
+            Viral: 'bg-amber-500/20 text-amber-200 border-amber-400/40',
+            'Insect Pest': 'bg-rose-500/20 text-rose-200 border-rose-400/40',
+            Healthy: 'bg-emerald-500/20 text-emerald-200 border-emerald-400/40',
+          }[disease.type] || 'bg-white/10 text-white border-white/20';
 
           return (
             <div
               key={disease.name}
               onClick={() => setActiveModalDisease(disease)}
-              className="bg-slate-900 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-5 shadow-lg transition-all hover:-translate-y-1 cursor-pointer flex flex-col justify-between group"
+              className="card-hover bg-maroon-950/75 border border-white/15 rounded-3xl p-6 shadow-xl transition-all cursor-pointer flex flex-col justify-between group backdrop-blur-xl"
             >
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${typeColor}`}>
+                <div className="flex items-center justify-between mb-3">
+                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold border ${typeColor}`}>
                     {disease.type}
                   </span>
-                  <span className="text-[10px] text-slate-500 font-mono">
-                    Default: {disease.severityDefault}
+                  <span className="text-[10px] text-rose-200/60 font-mono">
+                    Severity: {disease.severityDefault}
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">
+                <h3 className="text-lg font-extrabold text-white group-hover:text-rose-200 transition-colors">
                   {disease.name}
                 </h3>
-                <p className="text-xs text-slate-400 italic line-clamp-1 mt-0.5">
+                <p className="text-xs text-rose-200/70 italic line-clamp-1 mt-1">
                   {disease.pathogen}
                 </p>
 
-                <p className="text-xs text-slate-400 line-clamp-3 mt-3 leading-relaxed">
+                <p className="text-xs text-rose-100/80 line-clamp-3 mt-3.5 leading-relaxed font-normal">
                   {disease.description}
                 </p>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-emerald-400 font-semibold">
+              <div className="mt-5 pt-3.5 border-t border-white/15 flex items-center justify-between text-xs text-rose-200 font-bold group-hover:text-white transition-colors">
                 <span>View Full Agronomic Sheet</span>
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
               </div>
             </div>
           );
@@ -134,43 +134,43 @@ export default function DiseaseCatalog() {
       </div>
 
       {filteredDiseases.length === 0 && (
-        <div className="text-center py-12 bg-slate-900 border border-slate-800 rounded-2xl text-slate-400">
-          <p className="text-sm">No rice pathology found matching your filter criteria.</p>
+        <div className="card-hover text-center py-16 bg-maroon-950/70 border border-white/20 rounded-3xl text-rose-200 backdrop-blur-md">
+          <p className="text-sm font-medium">No rice pathology found matching your search filter.</p>
         </div>
       )}
 
       {/* Disease Detail Modal */}
       {activeModalDisease && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+          <div className="card-hover bg-maroon-950 border border-white/25 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
             <button
               onClick={() => setActiveModalDisease(null)}
-              className="absolute top-5 right-5 p-1.5 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
+              className="absolute top-6 right-6 p-2 text-rose-200 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl transition-all border border-white/15"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="mb-4">
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold border bg-emerald-500/10 text-emerald-400 border-emerald-500/30">
+            <div className="mb-5">
+              <span className="px-3 py-1 rounded-full text-xs font-bold border bg-white/15 text-white border-white/25">
                 {activeModalDisease.type} Pathology
               </span>
-              <h3 className="text-2xl font-black text-white mt-1.5">{activeModalDisease.name}</h3>
-              <p className="text-sm text-slate-400 italic">{activeModalDisease.pathogen}</p>
+              <h3 className="text-2xl sm:text-3xl font-black text-white mt-2.5">{activeModalDisease.name}</h3>
+              <p className="text-sm text-rose-200/80 italic mt-0.5">{activeModalDisease.pathogen}</p>
             </div>
 
-            <p className="text-sm text-slate-300 leading-relaxed mb-5 p-3.5 bg-slate-950/60 rounded-xl border border-slate-800">
+            <p className="text-xs sm:text-sm text-rose-100 leading-relaxed mb-6 p-4 bg-black/35 rounded-2xl border border-white/15">
               {activeModalDisease.description}
             </p>
 
             <div className="space-y-4">
               <div>
-                <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">
+                <h4 className="text-xs font-extrabold text-white uppercase tracking-wider mb-2.5">
                   Diagnostic Visual Symptoms
                 </h4>
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   {activeModalDisease.symptoms.map((s, idx) => (
-                    <div key={idx} className="flex items-start space-x-2 text-xs text-slate-300">
-                      <span className="text-emerald-400 font-bold">•</span>
+                    <div key={idx} className="flex items-start space-x-2.5 text-xs text-rose-100">
+                      <span className="text-rose-300 font-extrabold">•</span>
                       <span>{s}</span>
                     </div>
                   ))}
@@ -178,12 +178,12 @@ export default function DiseaseCatalog() {
               </div>
 
               {activeModalDisease.favorableConditions && (
-                <div>
-                  <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1 flex items-center space-x-1.5">
-                    <ThermometerSun className="w-3.5 h-3.5" />
+                <div className="p-4 bg-black/30 rounded-2xl border border-white/15">
+                  <h4 className="text-xs font-bold text-rose-200 uppercase tracking-wider mb-1.5 flex items-center space-x-1.5">
+                    <ThermometerSun className="w-4 h-4 text-rose-300" />
                     <span>Favorable Weather Triggers</span>
                   </h4>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-xs text-rose-100 leading-relaxed font-normal">
                     {activeModalDisease.favorableConditions}
                   </p>
                 </div>
@@ -191,13 +191,13 @@ export default function DiseaseCatalog() {
 
               {activeModalDisease.chemicalControl?.length > 0 && (
                 <div>
-                  <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-                    <Pill className="w-3.5 h-3.5" />
+                  <h4 className="text-xs font-extrabold text-white uppercase tracking-wider mb-2 flex items-center space-x-1.5">
+                    <Pill className="w-3.5 h-3.5 text-rose-300" />
                     <span>Chemical Treatment</span>
                   </h4>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     {activeModalDisease.chemicalControl.map((c, idx) => (
-                      <div key={idx} className="p-2.5 bg-slate-950/60 border border-slate-800 rounded-lg text-xs text-slate-200">
+                      <div key={idx} className="p-3 bg-black/35 border border-white/15 rounded-xl text-xs text-rose-100 font-medium">
                         {c}
                       </div>
                     ))}
@@ -207,14 +207,14 @@ export default function DiseaseCatalog() {
 
               {activeModalDisease.culturalPractices?.length > 0 && (
                 <div>
-                  <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-                    <Shield className="w-3.5 h-3.5" />
+                  <h4 className="text-xs font-extrabold text-white uppercase tracking-wider mb-2 flex items-center space-x-1.5">
+                    <Shield className="w-3.5 h-3.5 text-rose-300" />
                     <span>Cultural & Agronomic Field Practices</span>
                   </h4>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     {activeModalDisease.culturalPractices.map((cp, idx) => (
-                      <div key={idx} className="flex items-start space-x-2 text-xs text-slate-300">
-                        <span className="text-emerald-400 font-bold">•</span>
+                      <div key={idx} className="flex items-start space-x-2 text-xs text-rose-100">
+                        <span className="text-rose-300 font-bold">•</span>
                         <span>{cp}</span>
                       </div>
                     ))}
@@ -223,10 +223,10 @@ export default function DiseaseCatalog() {
               )}
             </div>
 
-            <div className="mt-6 pt-4 border-t border-slate-800 flex justify-end">
+            <div className="mt-8 pt-5 border-t border-white/15 flex justify-end">
               <button
                 onClick={() => setActiveModalDisease(null)}
-                className="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold"
+                className="px-6 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold border border-white/20 transition-all"
               >
                 Close Sheet
               </button>
