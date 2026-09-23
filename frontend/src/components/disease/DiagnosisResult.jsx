@@ -27,20 +27,20 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
     <div className="space-y-6">
       
       {/* Top Diagnosis Card */}
-      <div className="card-hover bg-white/95 border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-card-soft relative overflow-hidden backdrop-blur-xl">
+      <div className="card-hover bg-white/95 border border-emerald-200/90 rounded-3xl p-6 sm:p-8 shadow-card-soft relative overflow-hidden backdrop-blur-xl">
         
         {/* Glow accent */}
-        <div className={`absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-20 ${
-          isHealthy ? 'bg-emerald-200' : 'bg-amber-100'
+        <div className={`absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-30 ${
+          isHealthy ? 'bg-emerald-200' : 'bg-amber-200'
         }`} />
 
-        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between pb-6 border-b border-slate-200">
+        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between pb-6 border-b border-emerald-200/70">
           <div>
             <div className="flex items-center space-x-2.5 mb-2.5">
               <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${sevStyle.bg} ${sevStyle.text} ${sevStyle.border} shadow-sm`}>
                 {result.pathology_type || 'Crop Pathology'}
               </span>
-              <span className="text-xs text-slate-500 flex items-center space-x-1.5 font-medium">
+              <span className="text-xs text-slate-600 flex items-center space-x-1.5 font-medium">
                 <Cpu className="w-3.5 h-3.5 text-emerald-600" />
                 <span>{result.source || 'EfficientNet-B0 Model'}</span>
               </span>
@@ -56,8 +56,8 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
             </h2>
 
             {result.pathogen && (
-              <p className="text-sm text-slate-600 mt-1.5 italic font-sans">
-                Pathogen: <span className="text-slate-900 font-semibold">{result.pathogen}</span>
+              <p className="text-sm text-slate-700 mt-1.5 italic font-sans">
+                Pathogen: <span className="text-emerald-950 font-bold">{result.pathogen}</span>
               </p>
             )}
           </div>
@@ -66,15 +66,15 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
           <div className="flex flex-wrap sm:flex-nowrap gap-3 items-center">
             
             {/* Confidence Gauge */}
-            <div className="card-hover bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3.5 text-center min-w-[130px]">
-              <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-center space-x-1">
+            <div className="card-hover bg-emerald-50/70 border border-emerald-200 rounded-2xl px-5 py-3.5 text-center min-w-[130px] shadow-xs">
+              <div className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center justify-center space-x-1">
                 <Percent className="w-3 h-3 text-emerald-600" />
                 <span>Confidence</span>
               </div>
-              <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-0.5">
+              <div className="text-2xl sm:text-3xl font-black text-emerald-900 mt-0.5">
                 {confidence}%
               </div>
-              <div className="w-full bg-slate-200 h-1.5 rounded-full mt-2 overflow-hidden">
+              <div className="w-full bg-emerald-200/80 h-1.5 rounded-full mt-2 overflow-hidden">
                 <div 
                   className="bg-emerald-600 h-full rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(confidence, 100)}%` }}
@@ -83,12 +83,12 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
             </div>
 
             {/* Severity Rating */}
-            <div className={`card-hover border rounded-2xl px-5 py-3.5 text-center min-w-[130px] ${sevStyle.bg} ${sevStyle.border}`}>
-              <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Severity Grade</div>
+            <div className={`card-hover border rounded-2xl px-5 py-3.5 text-center min-w-[130px] ${sevStyle.bg} ${sevStyle.border} shadow-xs`}>
+              <div className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">Severity Grade</div>
               <div className={`text-2xl sm:text-3xl font-black ${sevStyle.text} mt-0.5 uppercase`}>
                 {result.severity || 'Moderate'}
               </div>
-              <div className="text-[10px] text-slate-500 mt-1 font-semibold">
+              <div className="text-[10px] text-slate-600 mt-1 font-semibold">
                 Area: {result.affected_leaf_area || '18%'}
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
             {/* Print Report Trigger */}
             <button
               onClick={onOpenReport}
-              className="card-hover px-5 py-3.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-2xl border border-slate-700 flex items-center space-x-2 transition-all duration-300 shadow-sm h-full"
+              className="card-hover px-5 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider rounded-2xl border border-emerald-600 flex items-center space-x-2 transition-all duration-300 shadow-md shadow-emerald-700/20 h-full"
             >
               <FileText className="w-4 h-4 text-emerald-400" />
               <span>Agronomy Report</span>
@@ -163,19 +163,19 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
 
             <div className="space-y-3">
               {(result.top_predictions || []).map((pred, idx) => (
-                <div key={idx} className="card-hover bg-slate-50/80 border border-slate-200 rounded-2xl p-3.5">
+                <div key={idx} className="card-hover bg-emerald-50/40 border border-emerald-200/80 rounded-2xl p-3.5 shadow-xs">
                   <div className="flex justify-between items-center mb-1.5 text-xs">
                     <span className="font-bold text-slate-900">
                       {idx + 1}. {pred.class_name}
                     </span>
-                    <span className="font-mono font-black text-emerald-700">
+                    <span className="font-mono font-black text-emerald-800">
                       {(pred.percentage || (pred.probability * 100)).toFixed(2)}%
                     </span>
                   </div>
-                  <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                  <div className="w-full bg-emerald-200/60 h-2 rounded-full overflow-hidden">
                     <div 
                       className={`h-full rounded-full transition-all duration-800 ${
-                        idx === 0 ? 'bg-emerald-600' : 'bg-slate-400'
+                        idx === 0 ? 'bg-gradient-to-r from-emerald-600 to-teal-500' : 'bg-emerald-400'
                       }`}
                       style={{ width: `${pred.percentage || (pred.probability * 100)}%` }}
                     />
@@ -185,7 +185,7 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
             </div>
 
             {/* Urgency note */}
-            <div className="card-hover p-4 rounded-2xl bg-amber-50/80 border border-amber-200 text-xs text-amber-900 flex items-start space-x-3 font-sans">
+            <div className="card-hover p-4 rounded-2xl bg-amber-50 border border-amber-300 text-xs text-amber-950 flex items-start space-x-3 font-sans shadow-xs">
               <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
                 <span className="font-bold text-amber-950 uppercase tracking-wider">Agronomic Triage Advisory: </span>

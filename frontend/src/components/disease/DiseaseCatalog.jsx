@@ -32,27 +32,27 @@ export default function DiseaseCatalog() {
     <div className="space-y-6">
       
       {/* Search & Filter Header */}
-      <div className="card-hover bg-white/95 border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-card-soft backdrop-blur-xl">
+      <div className="card-hover bg-white/95 border border-emerald-200/90 rounded-3xl p-6 sm:p-8 shadow-card-soft backdrop-blur-xl">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 flex items-center space-x-2.5">
               <Sprout className="w-6 h-6 text-emerald-600" />
               <span>17 Rice Leaf Conditions & Pathologies</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 font-sans">
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 font-sans">
               Comprehensive clinical database supported natively by the EfficientNet-B0 architecture
             </p>
           </div>
 
           {/* Search Input */}
           <div className="relative w-full md:w-80 font-sans">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-emerald-600 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search pathology, pathogen, symptom..."
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-2xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-sans"
+              className="w-full pl-10 pr-4 py-2.5 bg-emerald-50/40 border border-emerald-300/80 rounded-2xl text-xs text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-sans"
             />
             {search && (
               <button onClick={() => setSearch('')} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
@@ -63,20 +63,20 @@ export default function DiseaseCatalog() {
         </div>
 
         {/* Type Filter Pills */}
-        <div className="flex flex-wrap gap-2.5 mt-6 pt-5 border-t border-slate-200">
+        <div className="flex flex-wrap gap-2.5 mt-6 pt-5 border-t border-emerald-200/70">
           {Object.entries(typeCounts).map(([type, count]) => (
             <button
               key={type}
               onClick={() => setSelectedType(type)}
               className={`card-hover px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center space-x-2 transition-all duration-300 ${
                 selectedType === type
-                  ? 'bg-emerald-600 text-white shadow-sm border border-emerald-700'
-                  : 'bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 border border-emerald-700 font-extrabold'
+                  : 'bg-emerald-50/70 text-emerald-900 hover:text-emerald-950 hover:bg-emerald-100 border border-emerald-200'
               }`}
             >
               <span>{type}</span>
               <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
-                selectedType === type ? 'bg-emerald-800 text-white' : 'bg-slate-200 text-slate-600'
+                selectedType === type ? 'bg-emerald-800 text-white' : 'bg-emerald-200/70 text-emerald-800 font-semibold'
               }`}>
                 {count}
               </span>
@@ -100,7 +100,7 @@ export default function DiseaseCatalog() {
             <div
               key={disease.name}
               onClick={() => setActiveModalDisease(disease)}
-              className="card-hover bg-white/95 border border-slate-200/90 rounded-3xl p-6 shadow-sm transition-all cursor-pointer flex flex-col justify-between group backdrop-blur-xl"
+              className="card-hover bg-white/95 border border-emerald-200/80 hover:border-emerald-400 rounded-3xl p-6 shadow-xs transition-all cursor-pointer flex flex-col justify-between group backdrop-blur-xl"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">

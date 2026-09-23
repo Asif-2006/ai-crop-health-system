@@ -69,14 +69,14 @@ export default function App() {
         
         {/* Banner if backend is running live */}
         {backendStatus.online && (
-          <div className="card-hover mb-6 p-4 rounded-2xl bg-white/90 border border-emerald-200/80 flex items-center justify-between text-xs text-slate-700 shadow-sm backdrop-blur-md">
+          <div className="card-hover mb-6 p-4 rounded-2xl bg-emerald-50/90 border border-emerald-300 flex items-center justify-between text-xs text-emerald-950 shadow-sm backdrop-blur-md">
             <div className="flex items-center space-x-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>
-                <strong className="text-slate-900 font-bold">Connected to Live FastAPI Backend:</strong> EfficientNet-B0 active on <code className="bg-slate-100 px-1.5 py-0.5 rounded text-emerald-800 font-mono text-[11px] font-semibold">{backendStatus.device}</code> with {backendStatus.classes_count || 17} rice pathology heads.
+                <strong className="text-emerald-950 font-bold">Connected to Live FastAPI Backend:</strong> EfficientNet-B0 active on <code className="bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-mono text-[11px] font-semibold border border-emerald-300">{backendStatus.device}</code> with {backendStatus.classes_count || 17} rice pathology heads.
               </span>
             </div>
-            <span className="font-mono text-[11px] bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full text-emerald-700 font-bold">
+            <span className="font-mono text-[11px] bg-emerald-600 px-3 py-1 rounded-full text-white font-bold shadow-sm">
               port 8000
             </span>
           </div>
@@ -86,26 +86,26 @@ export default function App() {
         {activeTab === 'diagnose' && (
           <div className="space-y-8">
             
-            {/* Hero Banner (Clean, balanced Somerstone-inspired aesthetic) */}
-            <div className="card-hover relative rounded-3xl bg-white/95 border border-slate-200/80 p-8 sm:p-12 overflow-hidden shadow-card-soft backdrop-blur-md">
+            {/* Hero Banner (Clean, balanced Somerstone-inspired aesthetic with fresh botanical colors) */}
+            <div className="card-hover relative rounded-3xl bg-gradient-to-br from-white/95 via-emerald-50/60 to-teal-50/40 border border-emerald-200/90 p-8 sm:p-12 overflow-hidden shadow-card-soft backdrop-blur-md">
               
               {/* Subtle ambient botanical gradient */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-emerald-100/50 via-nature-50/40 to-transparent rounded-full blur-3xl pointer-events-none"></div>
-              <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-slate-100/60 rounded-full blur-2xl pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-emerald-300/35 via-teal-200/25 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-amber-100/35 rounded-full blur-2xl pointer-events-none"></div>
 
               <div className="max-w-2xl relative z-10">
-                <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-4 shadow-sm">
-                  <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-emerald-100 border border-emerald-300/80 text-emerald-900 text-xs font-bold mb-4 shadow-sm">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
                   <span className="tracking-wide">Rice Leaf Pathology Diagnostic Engine</span>
                 </div>
                 <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
                   Intelligent Rice Leaf <br />
-                  <span className="text-emerald-700">
+                  <span className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
                     Disease Detection
                   </span>
                 </h1>
-                <p className="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed font-normal">
-                  Upload field photographs to instantly diagnose 17 paddy leaf pathologies with <span className="text-emerald-800 font-bold underline decoration-emerald-300 decoration-2">94.82% benchmark accuracy</span>. Receive immediate severity grading, lesion area quantification, and expert agronomic guidance.
+                <p className="text-sm sm:text-base text-slate-700 mt-3 leading-relaxed font-normal">
+                  Upload field photographs to instantly diagnose 17 paddy leaf pathologies with <span className="text-emerald-800 font-bold underline decoration-emerald-400 decoration-2">94.82% benchmark accuracy</span>. Receive immediate severity grading, lesion area quantification, and expert agronomic guidance.
                 </p>
               </div>
             </div>

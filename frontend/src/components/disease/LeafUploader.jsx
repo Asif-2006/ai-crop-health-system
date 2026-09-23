@@ -127,10 +127,10 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
   };
 
   return (
-    <div className="card-hover bg-white/95 border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-card-soft relative backdrop-blur-xl">
+    <div className="card-hover bg-white/95 border border-emerald-200/90 rounded-3xl p-6 sm:p-8 shadow-card-soft relative backdrop-blur-xl">
       
       {/* Background decoration */}
-      <div className="absolute -top-24 -right-24 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute -top-24 -right-24 w-72 h-72 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="flex items-center justify-between mb-5">
         <div>
@@ -138,7 +138,7 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
             <ImageIcon className="w-5 h-5 text-emerald-600" />
             <span>Paddy Leaf Image Input</span>
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-600 mt-0.5">
             Upload field photograph or select verified test sample for automated diagnosis
           </p>
         </div>
@@ -164,8 +164,8 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
           onClick={() => fileInputRef.current?.click()}
           className={`card-hover border-2 border-dashed rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all duration-300 ${
             dragActive
-              ? 'border-emerald-500 bg-emerald-50/60 scale-[0.99] shadow-[inset_0_0_24px_rgba(22,163,74,0.1)]'
-              : 'border-slate-300/80 hover:border-emerald-500 bg-slate-50/50 hover:bg-emerald-50/20'
+              ? 'border-emerald-500 bg-emerald-100/60 scale-[0.99] shadow-[inset_0_0_28px_rgba(16,185,129,0.15)]'
+              : 'border-emerald-300/80 hover:border-emerald-500 bg-emerald-50/40 hover:bg-emerald-50/80'
           }`}
         >
           <input
@@ -175,13 +175,13 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
             className="hidden"
             onChange={handleFileInput}
           />
-          <div className="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-4 border border-emerald-200 shadow-sm">
+          <div className="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-4 border border-emerald-300/80 shadow-sm">
             <UploadCloud className="w-8 h-8" />
           </div>
           <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5">
             Drop rice leaf photograph here, or <span className="text-emerald-700 underline underline-offset-4 font-black hover:text-emerald-800">browse files</span>
           </h3>
-          <p className="text-xs text-slate-500 max-w-sm mx-auto mb-5 leading-relaxed">
+          <p className="text-xs text-slate-600 max-w-sm mx-auto mb-5 leading-relaxed">
             Supports high-resolution JPG, PNG or WebP. Optimal results obtained with close-up, sharp leaf illumination.
           </p>
 
@@ -192,7 +192,7 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
                 e.stopPropagation();
                 startCamera();
               }}
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold border border-slate-300 transition-all duration-300 shadow-sm hover:shadow-md"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-white hover:bg-emerald-50 text-slate-800 text-xs font-bold border border-emerald-300/80 transition-all duration-300 shadow-sm hover:shadow-md"
             >
               <Camera className="w-4 h-4 text-emerald-600" />
               <span>Capture Live Camera</span>
@@ -287,22 +287,22 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
       )}
 
       {/* Preset Quick-Test Samples */}
-      <div className="mt-6 pt-5 border-t border-slate-200/80">
+      <div className="mt-6 pt-5 border-t border-emerald-200/80">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">Quick-Test Verified Samples</span>
-          <span className="text-[10px] text-slate-400 font-mono">17-Class Model Trained</span>
+          <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">Quick-Test Verified Samples</span>
+          <span className="text-[10px] text-emerald-700/80 font-mono font-semibold">17-Class Model Trained</span>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
           {PRESET_SAMPLES.map((sample) => (
             <div
               key={sample.id}
               onClick={() => handlePresetSelect(sample)}
-              className="card-hover p-3 rounded-xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-200 hover:border-emerald-300 text-left transition-all duration-300 cursor-pointer group"
+              className="card-hover p-3 rounded-xl bg-emerald-50/40 hover:bg-emerald-100/70 border border-emerald-200/90 hover:border-emerald-400 text-left transition-all duration-300 cursor-pointer group shadow-xs"
             >
-              <div className="text-xs font-bold text-slate-800 group-hover:text-emerald-700 truncate">
+              <div className="text-xs font-bold text-slate-800 group-hover:text-emerald-800 truncate">
                 {sample.label}
               </div>
-              <div className="text-[10px] text-slate-500 truncate mt-0.5">
+              <div className="text-[10px] text-emerald-700 truncate mt-0.5 font-medium">
                 {sample.desc}
               </div>
             </div>

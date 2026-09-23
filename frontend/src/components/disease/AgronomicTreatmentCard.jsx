@@ -9,26 +9,26 @@ export default function AgronomicTreatmentCard({ result }) {
   const isHealthy = result.predicted_class === "Healthy";
 
   return (
-    <div className="card-hover bg-white/95 border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-card-soft backdrop-blur-xl">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200">
+    <div className="card-hover bg-white/95 border border-emerald-200/90 rounded-3xl p-6 sm:p-8 shadow-card-soft backdrop-blur-xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-emerald-200/70">
         <div>
           <h3 className="text-xl font-bold text-slate-900 flex items-center space-x-2.5">
             <Pill className="w-5 h-5 text-emerald-600" />
             <span>Agronomic Prescription & Remediation Guide</span>
           </h3>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-600 mt-0.5">
             Tailored field interventions based on IRRI & national agricultural recommendations
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center space-x-1 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 self-start sm:self-auto">
+        <div className="flex items-center space-x-1 bg-emerald-50/90 p-1.5 rounded-2xl border border-emerald-200/80 self-start sm:self-auto">
           <button
             onClick={() => setActiveSubTab('chemical')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
               activeSubTab === 'chemical'
-                ? 'bg-white text-slate-900 shadow-sm border border-slate-200/80'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 font-extrabold'
+                : 'text-emerald-900/80 hover:text-emerald-950 hover:bg-emerald-100/70'
             }`}
           >
             Chemical Control
@@ -37,8 +37,8 @@ export default function AgronomicTreatmentCard({ result }) {
             onClick={() => setActiveSubTab('biological')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
               activeSubTab === 'biological'
-                ? 'bg-white text-slate-900 shadow-sm border border-slate-200/80'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 font-extrabold'
+                : 'text-emerald-900/80 hover:text-emerald-950 hover:bg-emerald-100/70'
             }`}
           >
             Organic & Bio
@@ -47,8 +47,8 @@ export default function AgronomicTreatmentCard({ result }) {
             onClick={() => setActiveSubTab('cultural')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
               activeSubTab === 'cultural'
-                ? 'bg-white text-slate-900 shadow-sm border border-slate-200/80'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 font-extrabold'
+                : 'text-emerald-900/80 hover:text-emerald-950 hover:bg-emerald-100/70'
             }`}
           >
             Cultural Practices
@@ -57,8 +57,8 @@ export default function AgronomicTreatmentCard({ result }) {
             onClick={() => setActiveSubTab('symptoms')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
               activeSubTab === 'symptoms'
-                ? 'bg-white text-slate-900 shadow-sm border border-slate-200/80'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 font-extrabold'
+                : 'text-emerald-900/80 hover:text-emerald-950 hover:bg-emerald-100/70'
             }`}
           >
             Symptoms & Weather
@@ -68,7 +68,7 @@ export default function AgronomicTreatmentCard({ result }) {
 
       {/* Description Banner */}
       {result.description && (
-        <div className="card-hover p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-700 mb-6 flex items-start space-x-3.5 font-sans leading-relaxed">
+        <div className="card-hover p-4 sm:p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200 text-sm text-slate-800 mb-6 flex items-start space-x-3.5 font-sans leading-relaxed shadow-xs">
           <Info className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
           <p>{result.description}</p>
         </div>
@@ -80,7 +80,7 @@ export default function AgronomicTreatmentCard({ result }) {
         {/* Chemical Control */}
         {activeSubTab === 'chemical' && (
           <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider">
+            <div className="flex items-center space-x-2 text-xs font-extrabold text-slate-900 uppercase tracking-wider">
               <Pill className="w-4 h-4 text-emerald-600" />
               <span>Recommended Active Ingredients & Dosages</span>
             </div>
@@ -88,13 +88,13 @@ export default function AgronomicTreatmentCard({ result }) {
             {result.chemical_treatment && result.chemical_treatment.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 {result.chemical_treatment.map((chem, idx) => (
-                  <div key={idx} className="card-hover p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start space-x-3.5">
-                    <div className="w-7 h-7 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0 text-xs font-bold border border-emerald-200 shadow-sm font-mono">
+                  <div key={idx} className="card-hover p-4 rounded-2xl bg-emerald-50/30 border border-emerald-200/80 flex items-start space-x-3.5 shadow-xs">
+                    <div className="w-7 h-7 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0 text-xs font-bold border border-emerald-300 shadow-sm font-mono">
                       {idx + 1}
                     </div>
                     <div>
                       <p className="text-sm font-bold text-slate-900 font-sans">{chem}</p>
-                      <span className="text-[11px] text-slate-500 mt-1 block font-normal font-sans">
+                      <span className="text-[11px] text-slate-600 mt-1 block font-normal font-sans">
                         Apply during early morning or calm late afternoon with thorough foliage coverage.
                       </span>
                     </div>
@@ -106,7 +106,7 @@ export default function AgronomicTreatmentCard({ result }) {
             )}
 
             {!isHealthy && (
-              <div className="card-hover p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-800 flex items-center space-x-2.5 font-sans">
+              <div className="card-hover p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-center space-x-2.5 font-sans">
                 <AlertCircle className="w-4 h-4 flex-shrink-0 text-amber-600" />
                 <span>Always adhere to local safety intervals (PHI) before paddy harvest. Wear protective equipment during spraying.</span>
               </div>
@@ -117,7 +117,7 @@ export default function AgronomicTreatmentCard({ result }) {
         {/* Biological & Organic */}
         {activeSubTab === 'biological' && (
           <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider">
+            <div className="flex items-center space-x-2 text-xs font-extrabold text-slate-900 uppercase tracking-wider">
               <Leaf className="w-4 h-4 text-emerald-600" />
               <span>Bio-fungicides & Eco-Friendly Management</span>
             </div>
@@ -125,11 +125,11 @@ export default function AgronomicTreatmentCard({ result }) {
             {result.biological_treatment && result.biological_treatment.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 {result.biological_treatment.map((bio, idx) => (
-                  <div key={idx} className="card-hover p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start space-x-3.5">
-                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <div key={idx} className="card-hover p-4 rounded-2xl bg-teal-50/30 border border-teal-200/80 flex items-start space-x-3.5 shadow-xs">
+                    <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-bold text-slate-900 font-sans">{bio}</p>
-                      <span className="text-[11px] text-slate-500 mt-1 block font-normal font-sans">
+                      <span className="text-[11px] text-slate-600 mt-1 block font-normal font-sans">
                         Safe for beneficial soil microbes, natural predators, and pollinator insects.
                       </span>
                     </div>
@@ -145,7 +145,7 @@ export default function AgronomicTreatmentCard({ result }) {
         {/* Cultural Practices */}
         {activeSubTab === 'cultural' && (
           <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider">
+            <div className="flex items-center space-x-2 text-xs font-extrabold text-slate-900 uppercase tracking-wider">
               <Shield className="w-4 h-4 text-emerald-600" />
               <span>Agronomic & Preventive Field Management</span>
             </div>
@@ -153,9 +153,9 @@ export default function AgronomicTreatmentCard({ result }) {
             {result.cultural_practices && result.cultural_practices.length > 0 ? (
               <div className="space-y-3">
                 {result.cultural_practices.map((cult, idx) => (
-                  <div key={idx} className="card-hover p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center space-x-3.5">
+                  <div key={idx} className="card-hover p-4 rounded-2xl bg-emerald-50/30 border border-emerald-200/80 flex items-center space-x-3.5 shadow-xs">
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-600 flex-shrink-0 shadow-[0_0_8px_rgba(22,163,74,0.4)]" />
-                    <p className="text-sm text-slate-700 font-sans">{cult}</p>
+                    <p className="text-sm text-slate-800 font-sans">{cult}</p>
                   </div>
                 ))}
               </div>

@@ -3,13 +3,13 @@ import { Sprout, Activity, Database, BarChart3, Wifi, WifiOff, RefreshCw } from 
 
 export default function Header({ activeTab, setActiveTab, backendStatus, onRefreshStatus }) {
   return (
-    <header className="border-b border-slate-200/80 bg-white/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
+    <header className="border-b border-emerald-200/80 bg-white/90 backdrop-blur-xl sticky top-0 z-50 shadow-sm shadow-emerald-900/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Logo & Project Title */}
           <div className="flex items-center space-x-3.5 group cursor-pointer" onClick={() => setActiveTab('diagnose')}>
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 to-nature-500 flex items-center justify-center shadow-md shadow-emerald-600/15 border border-emerald-500/20 transition-transform duration-300 group-hover:scale-105">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 flex items-center justify-center shadow-md shadow-emerald-600/25 border border-emerald-400/30 transition-transform duration-300 group-hover:scale-105">
               <Sprout className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -17,27 +17,27 @@ export default function Header({ activeTab, setActiveTab, backendStatus, onRefre
                 <span className="text-xl font-extrabold tracking-tight text-slate-900 font-sans">
                   RiceVision <span className="text-emerald-600 font-black">AI</span>
                 </span>
-                <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300/80">
                   CV-Service
                 </span>
               </div>
-              <p className="text-xs text-slate-500 font-medium">
+              <p className="text-xs text-slate-600 font-medium">
                 Paddy Leaf Pathology Diagnosis & Agricultural Decision Support
               </p>
             </div>
           </div>
 
-          {/* Navigation Tabs (Somerstone-inspired minimalist layout) */}
-          <div className="hidden md:flex items-center space-x-1 bg-slate-100/80 p-1.5 rounded-2xl border border-slate-200/80">
+          {/* Navigation Tabs (Somerstone-inspired layout with fresh natural color) */}
+          <div className="hidden md:flex items-center space-x-1.5 bg-emerald-50/90 p-1.5 rounded-2xl border border-emerald-200/80">
             <button
               onClick={() => setActiveTab('diagnose')}
               className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-300 ${
                 activeTab === 'diagnose'
-                  ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60 font-extrabold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 font-extrabold'
+                  : 'text-emerald-900/80 hover:text-emerald-950 hover:bg-emerald-100/70'
               }`}
             >
-              <Activity className="w-4 h-4 text-emerald-600" />
+              <Activity className={`w-4 h-4 ${activeTab === 'diagnose' ? 'text-white' : 'text-emerald-700'}`} />
               <span>Diagnose Leaf</span>
             </button>
 
@@ -45,11 +45,11 @@ export default function Header({ activeTab, setActiveTab, backendStatus, onRefre
               onClick={() => setActiveTab('catalog')}
               className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-300 ${
                 activeTab === 'catalog'
-                  ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60 font-extrabold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 font-extrabold'
+                  : 'text-emerald-900/80 hover:text-emerald-950 hover:bg-emerald-100/70'
               }`}
             >
-              <Database className="w-4 h-4 text-emerald-600" />
+              <Database className={`w-4 h-4 ${activeTab === 'catalog' ? 'text-white' : 'text-emerald-700'}`} />
               <span>17-Disease Catalog</span>
             </button>
 
@@ -57,11 +57,11 @@ export default function Header({ activeTab, setActiveTab, backendStatus, onRefre
               onClick={() => setActiveTab('benchmarks')}
               className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-300 ${
                 activeTab === 'benchmarks'
-                  ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60 font-extrabold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 font-extrabold'
+                  : 'text-emerald-900/80 hover:text-emerald-950 hover:bg-emerald-100/70'
               }`}
             >
-              <BarChart3 className="w-4 h-4 text-emerald-600" />
+              <BarChart3 className={`w-4 h-4 ${activeTab === 'benchmarks' ? 'text-white' : 'text-emerald-700'}`} />
               <span>Benchmarks & Metrics</span>
             </button>
           </div>
