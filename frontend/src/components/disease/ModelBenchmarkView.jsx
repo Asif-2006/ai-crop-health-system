@@ -28,46 +28,46 @@ export default function ModelBenchmarkView() {
       {/* Benchmark Header Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
-        <div className="card-hover bg-maroon-950/80 border border-white/20 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
-          <div className="flex items-center justify-between text-rose-200/80 mb-2">
+        <div className="card-hover bg-[#0e3312]/80 border border-[#66BB6A]/30 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
+          <div className="flex items-center justify-between text-[#A5D6A7] mb-2">
             <span className="text-xs font-bold uppercase tracking-wider">External Accuracy</span>
-            <Award className="w-5 h-5 text-rose-300" />
+            <Award className="w-5 h-5 text-[#66BB6A]" />
           </div>
-          <div className="text-3xl sm:text-4xl font-black text-white">94.82%</div>
-          <p className="text-[11px] text-rose-100/70 mt-2 font-medium">
+          <div className="text-4xl sm:text-5xl font-black text-white font-galgo">94.82%</div>
+          <p className="text-[11px] text-[#A5D6A7]/80 mt-2 font-medium font-sans">
             5,625 / 5,932 external Indian benchmark images (Sethy et al.)
           </p>
         </div>
 
-        <div className="card-hover bg-maroon-950/80 border border-white/20 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
-          <div className="flex items-center justify-between text-rose-200/80 mb-2">
+        <div className="card-hover bg-[#0e3312]/80 border border-[#66BB6A]/30 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
+          <div className="flex items-center justify-between text-[#A5D6A7] mb-2">
             <span className="text-xs font-bold uppercase tracking-wider">Architecture</span>
-            <Cpu className="w-5 h-5 text-rose-300" />
+            <Cpu className="w-5 h-5 text-[#66BB6A]" />
           </div>
-          <div className="text-2xl sm:text-3xl font-black text-white">EfficientNet-B0</div>
-          <p className="text-[11px] text-rose-100/70 mt-2 font-medium">
+          <div className="text-3xl sm:text-4xl font-black text-white font-galgo uppercase">EfficientNet-B0</div>
+          <p className="text-[11px] text-[#A5D6A7]/80 mt-2 font-medium font-sans">
             4.07M Params · 16.3 MB FP32 Safetensors
           </p>
         </div>
 
-        <div className="card-hover bg-maroon-950/80 border border-white/20 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
-          <div className="flex items-center justify-between text-rose-200/80 mb-2">
+        <div className="card-hover bg-[#0e3312]/80 border border-[#66BB6A]/30 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
+          <div className="flex items-center justify-between text-[#A5D6A7] mb-2">
             <span className="text-xs font-bold uppercase tracking-wider">In-Domain Macro F1</span>
-            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+            <CheckCircle2 className="w-5 h-5 text-[#66BB6A]" />
           </div>
-          <div className="text-3xl sm:text-4xl font-black text-white">94.73%</div>
-          <p className="text-[11px] text-rose-100/70 mt-2 font-medium">
+          <div className="text-4xl sm:text-5xl font-black text-white font-galgo">94.73%</div>
+          <p className="text-[11px] text-[#A5D6A7]/80 mt-2 font-medium font-sans">
             Held-out group-aware split (n = 3,984 test images)
           </p>
         </div>
 
-        <div className="card-hover bg-maroon-950/80 border border-white/20 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
-          <div className="flex items-center justify-between text-rose-200/80 mb-2">
+        <div className="card-hover bg-[#0e3312]/80 border border-[#66BB6A]/30 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
+          <div className="flex items-center justify-between text-[#A5D6A7] mb-2">
             <span className="text-xs font-bold uppercase tracking-wider">Supported Classes</span>
-            <Database className="w-5 h-5 text-rose-300" />
+            <Database className="w-5 h-5 text-[#66BB6A]" />
           </div>
-          <div className="text-3xl sm:text-4xl font-black text-white">17 Classes</div>
-          <p className="text-[11px] text-rose-100/70 mt-2 font-medium">
+          <div className="text-4xl sm:text-5xl font-black text-white font-galgo">17 Classes</div>
+          <p className="text-[11px] text-[#A5D6A7]/80 mt-2 font-medium font-sans">
             Fungal, Bacterial, Viral, Insect pest & Normal
           </p>
         </div>
@@ -78,22 +78,22 @@ export default function ModelBenchmarkView() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Confusion Matrix Card */}
-        <div className="card-hover lg:col-span-6 bg-maroon-950/80 border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between backdrop-blur-xl">
+        <div className="card-hover lg:col-span-6 bg-[#0e3312]/80 border border-[#66BB6A]/30 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between backdrop-blur-xl">
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-lg font-bold text-white flex items-center space-x-2.5">
-                <BarChart3 className="w-5 h-5 text-rose-300" />
+              <h3 className="text-2xl font-black text-white flex items-center space-x-2.5 uppercase tracking-wide">
+                <BarChart3 className="w-6 h-6 text-[#66BB6A]" />
                 <span>External Benchmark Confusion Matrix</span>
               </h3>
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-black/40 text-rose-200 border border-white/15">
+              <span className="px-3 py-1 rounded-full text-[10px] font-mono bg-black/40 text-[#A5D6A7] border border-[#66BB6A]/30 font-bold">
                 n = 5,932
               </span>
             </div>
-            <p className="text-xs text-rose-100/70 mb-5 leading-relaxed">
+            <p className="text-xs text-[#E8F5E9]/80 mb-5 leading-relaxed font-sans">
               Zero-shot external validation against Sethy et al. (2020) Indian paddy benchmark across Bacterial Blight, Blast, Brown Spot, and Tungro.
             </p>
 
-            <div className="card-hover rounded-2xl overflow-hidden border border-white/25 bg-white p-2.5 shadow-inner">
+            <div className="card-hover rounded-2xl overflow-hidden border border-[#66BB6A]/40 bg-white p-2.5 shadow-inner">
               <img
                 src="/confusion_matrix.png"
                 alt="Confusion Matrix Evaluation"
@@ -102,29 +102,29 @@ export default function ModelBenchmarkView() {
             </div>
           </div>
 
-          <div className="mt-5 pt-4 border-t border-white/15 text-xs text-rose-100 flex items-center justify-between font-semibold">
+          <div className="mt-5 pt-4 border-t border-[#66BB6A]/20 text-xs text-[#A5D6A7] flex items-center justify-between font-bold uppercase tracking-wider">
             <span>Overall Accuracy: <strong className="text-white">94.82%</strong></span>
             <span>4-Class Macro Precision: <strong className="text-white">95.82%</strong></span>
           </div>
         </div>
 
         {/* Per-Class Metrics Table */}
-        <div className="card-hover lg:col-span-6 bg-maroon-950/80 border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between backdrop-blur-xl">
+        <div className="card-hover lg:col-span-6 bg-[#0e3312]/80 border border-[#66BB6A]/30 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between backdrop-blur-xl">
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-lg font-bold text-white flex items-center space-x-2.5">
-                <FileSpreadsheet className="w-5 h-5 text-rose-300" />
+              <h3 className="text-2xl font-black text-white flex items-center space-x-2.5 uppercase tracking-wide">
+                <FileSpreadsheet className="w-6 h-6 text-[#66BB6A]" />
                 <span>Per-Class Classification Metrics (Held-out Test)</span>
               </h3>
-              <span className="text-[10px] text-rose-200/60 font-mono">17 Classes</span>
+              <span className="text-[10px] text-[#A5D6A7]/80 font-mono">17 Classes</span>
             </div>
-            <p className="text-xs text-rose-100/70 mb-4">
+            <p className="text-xs text-[#E8F5E9]/80 mb-4 font-sans">
               Harmonic precision, recall, and F1 scores per pathology class:
             </p>
 
-            <div className="card-hover overflow-x-auto max-h-[420px] overflow-y-auto rounded-2xl border border-white/15 bg-black/30">
-              <table className="w-full text-left text-xs text-rose-100">
-                <thead className="bg-black/60 text-[10px] text-rose-200 uppercase font-mono sticky top-0 border-b border-white/15 backdrop-blur-md">
+            <div className="card-hover overflow-x-auto max-h-[420px] overflow-y-auto rounded-2xl border border-[#66BB6A]/25 bg-black/35 font-sans">
+              <table className="w-full text-left text-xs text-[#E8F5E9]">
+                <thead className="bg-[#091e0a]/90 text-[10px] text-[#A5D6A7] uppercase font-mono sticky top-0 border-b border-[#66BB6A]/30 backdrop-blur-md">
                   <tr>
                     <th className="py-3 px-3.5">Disease Class</th>
                     <th className="py-3 px-2">Prec</th>
@@ -133,14 +133,14 @@ export default function ModelBenchmarkView() {
                     <th className="py-3 px-3 text-right">Support</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/10">
+                <tbody className="divide-y divide-[#66BB6A]/15">
                   {CLASS_PERFORMANCE.map((row) => (
-                    <tr key={row.name} className="hover:bg-white/10 transition-colors">
-                      <td className="py-2.5 px-3.5 font-bold text-white">{row.name}</td>
+                    <tr key={row.name} className="hover:bg-[#66BB6A]/15 transition-colors">
+                      <td className="py-2.5 px-3.5 font-bold text-white uppercase">{row.name}</td>
                       <td className="py-2.5 px-2 font-mono">{row.precision}</td>
                       <td className="py-2.5 px-2 font-mono">{row.recall}</td>
-                      <td className="py-2.5 px-2 font-mono font-extrabold text-white">{row.f1}</td>
-                      <td className="py-2.5 px-3 font-mono text-right text-rose-200/70">{row.support}</td>
+                      <td className="py-2.5 px-2 font-mono font-black text-[#A5D6A7]">{row.f1}</td>
+                      <td className="py-2.5 px-3 font-mono text-right text-[#E8F5E9]/70">{row.support}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -148,7 +148,7 @@ export default function ModelBenchmarkView() {
             </div>
           </div>
 
-          <div className="mt-5 pt-4 border-t border-white/15 flex items-center justify-between text-xs text-rose-200">
+          <div className="mt-5 pt-4 border-t border-[#66BB6A]/20 flex items-center justify-between text-xs text-[#A5D6A7] font-sans">
             <span>Canonical Preprocessing: 224px, bicubic</span>
             <a
               href="https://huggingface.co/Huyt/rice-leaf-disease-efficientnet-b0"

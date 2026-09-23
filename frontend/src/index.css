@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Galgo Condensed';
+  src: url('/fonts/galgo/Galgo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -6,43 +14,48 @@
 
 @layer base {
   * {
-    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Galgo Condensed', 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   
   body {
-    @apply antialiased text-slate-100;
-    /* Maroon to White Gradient Background */
-    background: radial-gradient(circle at 85% 5%, rgba(255, 255, 255, 0.3) 0%, transparent 45%),
-                radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.25) 0%, transparent 40%),
-                radial-gradient(circle at 50% 30%, rgba(140, 16, 40, 0.8) 0%, transparent 60%),
-                linear-gradient(145deg, #240207 0%, #460713 25%, #6e0c1f 50%, #9e142f 75%, #fdf8f9 96%, #ffffff 100%);
+    @apply antialiased text-[#E8F5E9];
+    /* Color Hunt Palette: #E8F5E9 (Mint), #A5D6A7 (Sage), #66BB6A (Leaf), #1B5E20 (Forest) */
+    background: radial-gradient(circle at 85% 10%, rgba(165, 214, 167, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 15% 85%, rgba(232, 245, 233, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(102, 187, 106, 0.15) 0%, transparent 60%),
+                linear-gradient(145deg, #091e0a 0%, #123d16 25%, #1B5E20 50%, #25782c 75%, #1B5E20 100%);
     background-attachment: fixed;
     min-height: 100vh;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Galgo Condensed', sans-serif;
+    letter-spacing: 0.04em;
+  }
 }
 
-/* Beautiful Inside Div Hover Effect on all cards and containers */
+/* Beautiful Inside Div Hover Effect with Color Hunt accents */
 .card-hover, 
 .interactive-card {
   position: relative;
   overflow: hidden;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),
-              inset 0 0 16px rgba(128, 0, 32, 0.15),
-              0 6px 20px -6px rgba(20, 1, 5, 0.5);
+  box-shadow: inset 0 1px 0 rgba(232, 245, 233, 0.2),
+              inset 0 0 16px rgba(102, 187, 106, 0.12),
+              0 6px 20px -6px rgba(9, 30, 10, 0.5);
 }
 
 .card-hover:hover,
 .interactive-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.35) !important;
-  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.15),
-              inset 0 2px 4px rgba(255, 255, 255, 0.25),
-              inset 0 -2px 10px rgba(128, 0, 32, 0.4),
-              0 18px 36px -10px rgba(45, 3, 10, 0.65) !important;
+  border-color: #A5D6A7 !important;
+  box-shadow: inset 0 0 32px rgba(165, 214, 167, 0.25),
+              inset 0 2px 5px rgba(232, 245, 233, 0.35),
+              inset 0 -2px 12px rgba(27, 94, 32, 0.5),
+              0 18px 36px -10px rgba(9, 30, 10, 0.7) !important;
 }
 
-/* Inside light sweep pseudo-element for interactive divs */
+/* Inside light sweep pseudo-element */
 .card-hover::before,
 .interactive-card::before {
   content: '';
@@ -54,7 +67,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.08) 50%,
+    rgba(232, 245, 233, 0.12) 50%,
     transparent 100%
   );
   transform: skewX(-20deg);
@@ -68,20 +81,21 @@
   left: 140%;
 }
 
-/* Custom scrollbars */
+/* Custom scrollbars with Color Hunt palette */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #2b040a;
+  background: #091e0a;
 }
 ::-webkit-scrollbar-thumb {
-  background: #731024;
+  background: #1B5E20;
+  border: 1px solid #66BB6A;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #961832;
+  background: #66BB6A;
 }
 
 /* Heatmap pulse effect */
