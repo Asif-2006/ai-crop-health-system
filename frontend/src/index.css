@@ -1,12 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
-
-@font-face {
-  font-family: 'Galgo Condensed';
-  src: url('/fonts/galgo/Galgo.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,45 +6,45 @@
 
 @layer base {
   * {
-    font-family: 'Galgo Condensed', 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   
   body {
-    @apply antialiased text-[#E8F5E9];
-    /* Color Hunt Palette: #E8F5E9 (Mint), #A5D6A7 (Sage), #66BB6A (Leaf), #1B5E20 (Forest) */
-    background: radial-gradient(circle at 85% 10%, rgba(165, 214, 167, 0.25) 0%, transparent 50%),
-                radial-gradient(circle at 15% 85%, rgba(232, 245, 233, 0.15) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(102, 187, 106, 0.15) 0%, transparent 60%),
-                linear-gradient(145deg, #091e0a 0%, #123d16 25%, #1B5E20 50%, #25782c 75%, #1B5E20 100%);
+    @apply antialiased text-slate-800;
+    /* Balanced, lighter, airy natural gradient */
+    background: radial-gradient(circle at 12% 10%, rgba(220, 252, 231, 0.6) 0%, transparent 45%),
+                radial-gradient(circle at 88% 85%, rgba(240, 253, 244, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 50% 30%, rgba(241, 245, 249, 0.9) 0%, transparent 60%),
+                linear-gradient(135deg, #f8fafc 0%, #f1f5f9 45%, #f8fafc 100%);
     background-attachment: fixed;
     min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Galgo Condensed', sans-serif;
-    letter-spacing: 0.04em;
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
-/* Beautiful Inside Div Hover Effect with Color Hunt accents */
+/* Beautiful Inside Div Hover Effect for Light Composition */
 .card-hover, 
 .interactive-card {
   position: relative;
   overflow: hidden;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: inset 0 1px 0 rgba(232, 245, 233, 0.2),
-              inset 0 0 16px rgba(102, 187, 106, 0.12),
-              0 6px 20px -6px rgba(9, 30, 10, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9),
+              inset 0 0 16px rgba(22, 163, 74, 0.03),
+              0 4px 18px -2px rgba(15, 23, 42, 0.05);
 }
 
 .card-hover:hover,
 .interactive-card:hover {
   transform: translateY(-2px);
-  border-color: #A5D6A7 !important;
-  box-shadow: inset 0 0 32px rgba(165, 214, 167, 0.25),
-              inset 0 2px 5px rgba(232, 245, 233, 0.35),
-              inset 0 -2px 12px rgba(27, 94, 32, 0.5),
-              0 18px 36px -10px rgba(9, 30, 10, 0.7) !important;
+  border-color: rgba(34, 197, 94, 0.45) !important;
+  box-shadow: inset 0 0 28px rgba(34, 197, 94, 0.08),
+              inset 0 2px 4px rgba(255, 255, 255, 1),
+              inset 0 -2px 8px rgba(22, 163, 74, 0.06),
+              0 18px 36px -10px rgba(15, 23, 42, 0.1) !important;
 }
 
 /* Inside light sweep pseudo-element */
@@ -67,7 +59,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(232, 245, 233, 0.12) 50%,
+    rgba(255, 255, 255, 0.6) 50%,
     transparent 100%
   );
   transform: skewX(-20deg);
@@ -81,21 +73,20 @@
   left: 140%;
 }
 
-/* Custom scrollbars with Color Hunt palette */
+/* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #091e0a;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1B5E20;
-  border: 1px solid #66BB6A;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #66BB6A;
+  background: #94a3b8;
 }
 
 /* Heatmap pulse effect */
