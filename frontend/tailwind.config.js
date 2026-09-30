@@ -6,7 +6,24 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Manrope', 'sans-serif'],
+        script: ['Caveat', 'cursive'],
+      },
       colors: {
+        forest: {
+          900: '#11291C',
+          800: '#173626',
+          700: '#1F4532',
+          600: '#2A5840',
+        },
+        rice: {
+          dark: '#142E20',
+          active: '#274C37',
+          green: '#2E7D32',
+          accent: '#4ADE80',
+          bg: '#F6F8F5',
+        },
         paddy: {
           50: '#f0fdf4',
           100: '#dcfce7',
@@ -20,16 +37,6 @@ export default {
           900: '#14532d',
           950: '#052e16',
         },
-        harvest: {
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
-        }
       },
     },
   },

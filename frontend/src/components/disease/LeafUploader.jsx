@@ -1,22 +1,29 @@
 import React, { useState, useRef } from 'react';
-import { UploadCloud, Camera, Image as ImageIcon, X, Sparkles, AlertCircle } from 'lucide-react';
+import { 
+  Upload, 
+  UploadCloud, 
+  Camera, 
+  Image as ImageIcon, 
+  X, 
+  Sparkles, 
+  AlertCircle,
+  CheckCircle2,
+  RefreshCw
+} from 'lucide-react';
 
-const PRESET_SAMPLES = [
-  { id: 'bacterial_blight', label: 'Bacterial Blight', image: '/sample_leaf.jpg', desc: 'Water-soaked lesion' },
-  { id: 'brown_spot', label: 'Brown Spot', image: '/sample_leaf.jpg', desc: 'Oval dark brown spot' },
-  { id: 'leaf_blast', label: 'Leaf Blast', image: '/sample_leaf.jpg', desc: 'Spindle-shaped necrotic' },
-  { id: 'tungro', label: 'Tungro', image: '/sample_leaf.jpg', desc: 'Yellow-orange chlorosis' },
-  { id: 'healthy', label: 'Healthy', image: '/sample_leaf.jpg', desc: 'Vibrant green paddy' },
-];
-
-export default function LeafUploader({ onImageSelected, isAnalyzing, selectedImage, onReset }) {
+export default function LeafUploader({ 
+  onImageSelected, 
+  isAnalyzing, 
+  selectedImage, 
+  onReset 
+}) {
   const [dragActive, setDragActive] = useState(false);
   const [cameraActive, setCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState(null);
   const videoRef = useRef(null);
   const fileInputRef = useRef(null);
 
-  // Handle Drag & Drop
+  // Drag & drop handlers
   const handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -55,27 +62,9 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
         name: file.name,
         size: (file.size / 1024).toFixed(1) + ' KB',
         presetLabel: null,
-      });
+      }, true); // auto-trigger diagnosis for seamless UX
     };
     reader.readAsDataURL(file);
-  };
-
-  // Preset sample selection
-  const handlePresetSelect = async (sample) => {
-    try {
-      const response = await fetch(sample.image);
-      const blob = await response.blob();
-      const file = new File([blob], `${sample.id}.jpg`, { type: 'image/jpeg' });
-      onImageSelected({
-        file: file,
-        previewUrl: sample.image,
-        name: `Sample: ${sample.label}.jpg`,
-        size: 'Standard Dataset',
-        presetLabel: sample.label,
-      });
-    } catch (e) {
-      console.error('Error loading sample image', e);
-    }
   };
 
   // Camera capture
@@ -90,7 +79,7 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
         videoRef.current.srcObject = stream;
       }
     } catch (err) {
-      setCameraError('Unable to access camera. Please verify camera permissions.');
+      setCameraError('Unable to access camera. Please check camera permissions in your browser.');
       setCameraActive(false);
     }
   };
@@ -113,7 +102,7 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
         name: `field_capture_${Date.now()}.jpg`,
         size: (file.size / 1024).toFixed(1) + ' KB',
         presetLabel: null,
-      });
+      }, true);
     }, 'image/jpeg', 0.95);
   };
 
@@ -127,34 +116,37 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+    <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-6 shadow-sm relative h-full flex flex-col justify-between">
       
-      {/* Background decoration */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h2 className="text-lg font-bold text-white flex items-center space-x-2">
-            <ImageIcon className="w-5 h-5 text-emerald-400" />
-            <span>Paddy Leaf Image Input</span>
-          </h2>
-          <p className="text-xs text-slate-400">
-            Upload field photograph or select verified test sample for automated diagnosis
-          </p>
+      {/* Card Header */}
+      <div className="flex items-start justify-between mb-4 sm:mb-5">
+        <div className="flex items-start space-x-3">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#EAF5EC] text-[#2E7D32] flex items-center justify-center flex-shrink-0 mt-0.5">
+            <Upload className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
+          </div>
+          <div>
+            <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+              Upload Rice Leaf Image
+            </h2>
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1">
+              Upload a clear image of the rice leaf or capture using your camera
+            </p>
+          </div>
         </div>
-        
+
         {selectedImage && (
           <button
             onClick={onReset}
-            className="flex items-center space-x-1.5 px-3 py-1.5 text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-950/40 rounded-lg transition-colors border border-rose-900/40"
+            className="flex items-center space-x-1 px-2.5 sm:px-3 py-1.5 text-xs text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg transition-colors border border-rose-200 font-medium flex-shrink-0"
           >
             <X className="w-3.5 h-3.5" />
-            <span>Clear Leaf</span>
+            <span className="hidden sm:inline">Reset Image</span>
+            <span className="sm:hidden">Reset</span>
           </button>
         )}
       </div>
 
-      {/* Main Upload Zone */}
+      {/* Main Dropzone / Camera Area */}
       {!selectedImage && !cameraActive && (
         <div
           onDragEnter={handleDrag}
@@ -162,10 +154,10 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
           onDragOver={handleDrag}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${
+          className={`border-2 border-dashed rounded-2xl p-4 sm:p-8 cursor-pointer transition-all relative overflow-hidden bg-[#FCFDFB] min-h-[220px] sm:min-h-[260px] flex items-center justify-center ${
             dragActive
-              ? 'border-emerald-400 bg-emerald-950/20 scale-[0.99]'
-              : 'border-slate-700 hover:border-emerald-500/50 bg-slate-950/40 hover:bg-slate-900/60'
+              ? 'border-[#2E7D32] bg-[#F2F8F3] scale-[0.995]'
+              : 'border-[#CADBCC] hover:border-[#2E7D32] hover:bg-[#F9FCFA]'
           }`}
         >
           <input
@@ -175,40 +167,81 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
             className="hidden"
             onChange={handleFileInput}
           />
-          <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-4 border border-emerald-500/20">
-            <UploadCloud className="w-8 h-8" />
-          </div>
-          <h3 className="text-base font-semibold text-white mb-1">
-            Drop rice leaf photograph here, or <span className="text-emerald-400 underline underline-offset-4">browse files</span>
-          </h3>
-          <p className="text-xs text-slate-400 max-w-sm mx-auto mb-4">
-            Supports high-resolution JPG, PNG or WebP. Optimal results obtained with close-up, sharp leaf illumination.
-          </p>
 
-          <div className="flex items-center justify-center space-x-4 pt-2">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                startCamera();
-              }}
-              className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-all shadow-sm"
-            >
-              <Camera className="w-4 h-4 text-emerald-400" />
-              <span>Capture Live Camera</span>
-            </button>
+          {/* Botanical Rice Leaf Flush Attached to Bottom-Left Corner (Hidden on mobile < md to completely eliminate any overlap) */}
+          <div className="hidden md:block absolute bottom-0 left-0 w-44 lg:w-56 h-[90%] max-h-[220px] pointer-events-none select-none z-0">
+            <img
+              src="/images/complete_leaf_nobg.png"
+              alt="Rice Leaf with Lesions"
+              className="w-full h-full object-contain object-bottom-left"
+            />
+          </div>
+
+          {/* Center Upload Actions - Responsive layout without horizontal shift on mobile */}
+          <div className="relative z-10 w-full flex flex-col items-center text-center justify-center py-2 sm:py-3 md:pl-44 lg:pl-52">
+            
+            {/* Green circular upload cloud icon */}
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#EBF5ED] text-[#2E7D32] flex items-center justify-center mb-2 sm:mb-3 shadow-xs border border-[#D5EADB]">
+              <UploadCloud className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2]" />
+            </div>
+
+            <h3 className="text-sm sm:text-base font-bold text-slate-800 mb-1 px-2">
+              <span className="hidden sm:inline">Drag and drop a rice leaf image here</span>
+              <span className="sm:hidden">Upload or capture rice leaf image</span>
+            </h3>
+            <p className="text-[11px] sm:text-xs text-slate-500 mb-3.5 sm:mb-5 px-2">
+              or choose a file from your device
+            </p>
+
+            {/* Action buttons - Full width touch targets on small phones */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-2.5 w-full sm:w-auto px-2 sm:px-0">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fileInputRef.current?.click();
+                }}
+                className="w-full sm:w-auto px-5 py-2.5 sm:py-2.5 rounded-xl bg-[#193B2B] hover:bg-[#132E20] active:scale-[0.98] text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center space-x-2 cursor-pointer"
+              >
+                <ImageIcon className="w-4 h-4" />
+                <span>Choose Image</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  startCamera();
+                }}
+                className="w-full sm:w-auto px-4 py-2.5 sm:py-2.5 rounded-xl bg-white hover:bg-slate-50 active:scale-[0.98] text-slate-700 text-xs font-semibold border border-slate-300 transition-all shadow-sm flex items-center justify-center space-x-2 cursor-pointer"
+              >
+                <Camera className="w-4 h-4 text-slate-600" />
+                <span>Capture from Camera</span>
+              </button>
+            </div>
+
+            {/* Subtle caption */}
+            <p className="text-[10px] sm:text-[11px] text-slate-400 mt-3 sm:mt-5 font-medium">
+              Supports JPG, PNG, WebP • Max size 10MB
+            </p>
+
           </div>
         </div>
       )}
 
       {/* Live Camera Feed */}
       {cameraActive && (
-        <div className="rounded-xl border border-slate-700 overflow-hidden bg-black p-4 text-center">
-          <video ref={videoRef} autoPlay playsInline className="w-full max-h-80 object-contain rounded-lg mx-auto mb-4" />
+        <div className="rounded-2xl border border-slate-300 overflow-hidden bg-slate-900 p-4 text-center">
+          <video 
+            ref={videoRef} 
+            autoPlay 
+            playsInline 
+            className="w-full max-h-72 object-contain rounded-xl mx-auto mb-4 bg-black" 
+          />
           <div className="flex items-center justify-center space-x-3">
             <button
               onClick={capturePhoto}
-              className="flex items-center space-x-2 px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/30"
+              className="flex items-center space-x-2 px-5 py-2.5 rounded-lg bg-[#2E7D32] hover:bg-[#236327] text-white text-xs font-bold shadow-md shadow-emerald-700/20"
             >
               <Camera className="w-4 h-4" />
               <span>Capture Frame</span>
@@ -224,91 +257,83 @@ export default function LeafUploader({ onImageSelected, isAnalyzing, selectedIma
       )}
 
       {cameraError && (
-        <div className="mt-3 p-3 rounded-lg bg-rose-950/40 border border-rose-800/40 text-rose-300 text-xs flex items-center space-x-2">
+        <div className="mt-3 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center space-x-2">
           <AlertCircle className="w-4 h-4 flex-shrink-0" />
           <span>{cameraError}</span>
         </div>
       )}
 
-      {/* Selected Image Preview */}
+      {/* Image Loaded Preview */}
       {selectedImage && (
-        <div className="rounded-xl border border-slate-700 bg-slate-950/50 p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-            <div className="relative rounded-lg overflow-hidden border border-slate-800 aspect-[4/3] bg-black/60 flex items-center justify-center">
+        <div className="rounded-2xl border border-slate-200 bg-[#FCFDFB] p-5">
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
+            
+            <div className="sm:col-span-5 relative rounded-xl overflow-hidden border border-slate-200 aspect-[4/3] bg-white flex items-center justify-center shadow-sm">
               <img
                 src={selectedImage.previewUrl}
-                alt="Selected Rice Leaf"
+                alt="Selected Leaf"
                 className="w-full h-full object-contain"
               />
-              <div className="absolute top-2 left-2 px-2.5 py-1 rounded bg-black/70 backdrop-blur-sm text-[10px] font-mono text-emerald-300 border border-emerald-500/20">
-                RAW INPUT
+              <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm text-[10px] font-mono text-white">
+                LEAF INPUT
               </div>
             </div>
 
-            <div className="flex flex-col justify-between h-full space-y-4">
+            <div className="sm:col-span-7 flex flex-col justify-between h-full space-y-4">
               <div>
-                <span className="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider">Ready for Analysis</span>
-                <h4 className="text-base font-bold text-white mt-0.5 truncate">{selectedImage.name}</h4>
-                <p className="text-xs text-slate-400 mt-1">Image Size: {selectedImage.size}</p>
+                <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-[#EBF5ED] text-[#2E7D32] text-[11px] font-bold">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Image Loaded & Verified</span>
+                </div>
+                <h4 className="text-base font-bold text-slate-900 mt-2 truncate">
+                  {selectedImage.name}
+                </h4>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  File Size: <span className="font-semibold text-slate-700">{selectedImage.size}</span>
+                </p>
                 {selectedImage.presetLabel && (
-                  <div className="mt-2.5 inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-300 text-xs border border-emerald-500/20">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>Benchmark Sample: {selectedImage.presetLabel}</span>
-                  </div>
+                  <p className="text-xs text-emerald-700 font-medium mt-1">
+                    Pathology Sample: <span className="font-bold">{selectedImage.presetLabel}</span>
+                  </p>
                 )}
               </div>
 
-              <div className="pt-4 border-t border-slate-800/80">
+              <div className="pt-3 border-t border-slate-200 flex flex-wrap gap-2.5">
                 <button
                   disabled={isAnalyzing}
                   onClick={() => onImageSelected(selectedImage, true)}
-                  className={`w-full py-3 px-4 rounded-xl text-sm font-bold flex items-center justify-center space-x-2 transition-all shadow-lg ${
+                  className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-2 transition-all shadow-sm ${
                     isAnalyzing
-                      ? 'bg-emerald-800/50 text-emerald-200 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-emerald-600 to-green-500 hover:from-emerald-500 hover:to-green-400 text-white shadow-emerald-600/30'
+                      ? 'bg-[#193B2B]/70 text-white cursor-not-allowed'
+                      : 'bg-[#193B2B] hover:bg-[#132E20] text-white shadow-emerald-950/20'
                   }`}
                 >
                   {isAnalyzing ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      <span>Analyzing Neural Features (EfficientNet-B0)...</span>
+                      <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <span>Analyzing Pathology Features...</span>
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-4 h-4" />
-                      <span>Diagnose Leaf Pathology</span>
+                      <Sparkles className="w-4 h-4 text-[#4ADE80]" />
+                      <span>Re-analyze Diagnosis</span>
                     </>
                   )}
                 </button>
+
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="px-3 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-semibold"
+                >
+                  Change
+                </button>
               </div>
+
             </div>
+
           </div>
         </div>
       )}
-
-      {/* Preset Quick-Test Samples */}
-      <div className="mt-5 pt-4 border-t border-slate-800">
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-xs font-semibold text-slate-400">Quick-Test Verified Samples</span>
-          <span className="text-[10px] text-slate-500 font-mono">17-Class Model Trained</span>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-          {PRESET_SAMPLES.map((sample) => (
-            <button
-              key={sample.id}
-              onClick={() => handlePresetSelect(sample)}
-              className="p-2 rounded-lg bg-slate-950/60 hover:bg-slate-800/60 border border-slate-800 hover:border-emerald-500/40 text-left transition-all group"
-            >
-              <div className="text-xs font-medium text-slate-300 group-hover:text-emerald-400 truncate">
-                {sample.label}
-              </div>
-              <div className="text-[10px] text-slate-500 truncate mt-0.5">
-                {sample.desc}
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
 
     </div>
   );

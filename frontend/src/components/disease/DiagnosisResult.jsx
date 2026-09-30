@@ -12,52 +12,47 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
   const isHealthy = result.predicted_class === "Healthy";
   const confidence = result.confidence || 95.8;
 
-  // Severity styling
+  // Severity styling in light mode
   const severityColors = {
-    Healthy: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/30' },
-    Mild: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/30' },
-    Moderate: { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/30' },
-    Severe: { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/30' },
-    Critical: { bg: 'bg-rose-500/10', text: 'text-rose-400', border: 'border-rose-500/30' },
+    Healthy: { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
+    Mild: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+    Moderate: { bg: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-200' },
+    Severe: { bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200' },
+    Critical: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
   };
 
   const sevStyle = severityColors[result.severity] || severityColors.Moderate;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fadeIn">
       
       {/* Top Diagnosis Card */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+      <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm relative overflow-hidden">
         
-        {/* Glow accent */}
-        <div className={`absolute top-0 right-0 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 ${
-          isHealthy ? 'bg-emerald-500' : 'bg-amber-500'
-        }`} />
-
-        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between pb-6 border-b border-slate-800">
+        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between pb-6 border-b border-slate-100">
           <div>
             <div className="flex items-center space-x-2.5 mb-2">
               <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${sevStyle.bg} ${sevStyle.text} ${sevStyle.border}`}>
-                {result.pathology_type || 'Crop Pathology'}
+                {result.pathology_type || 'Rice Pathology'}
               </span>
-              <span className="text-xs text-slate-400 flex items-center space-x-1">
-                <Cpu className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-xs text-slate-500 flex items-center space-x-1">
+                <Cpu className="w-3.5 h-3.5 text-[#2E7D32]" />
                 <span>{result.source || 'EfficientNet-B0 Model'}</span>
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center space-x-3">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-center space-x-3">
               <span>{result.predicted_class}</span>
               {isHealthy ? (
-                <CheckCircle2 className="w-7 h-7 text-emerald-400 flex-shrink-0" />
+                <CheckCircle2 className="w-7 h-7 text-[#2E7D32] flex-shrink-0" />
               ) : (
-                <ShieldAlert className="w-7 h-7 text-amber-400 flex-shrink-0" />
+                <ShieldAlert className="w-7 h-7 text-amber-500 flex-shrink-0" />
               )}
             </h2>
 
             {result.pathogen && (
-              <p className="text-sm text-slate-400 mt-1 italic">
-                Pathogen: <span className="text-slate-300 font-semibold">{result.pathogen}</span>
+              <p className="text-sm text-slate-500 mt-1 italic">
+                Pathogen: <span className="text-slate-800 font-semibold">{result.pathogen}</span>
               </p>
             )}
           </div>
@@ -66,17 +61,17 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
           <div className="flex flex-wrap sm:flex-nowrap gap-3 items-center">
             
             {/* Confidence Gauge */}
-            <div className="bg-slate-950/70 border border-slate-800 rounded-xl px-5 py-3 text-center min-w-[130px]">
-              <div className="text-[11px] font-semibold text-slate-400 flex items-center justify-center space-x-1">
-                <Percent className="w-3 h-3 text-emerald-400" />
+            <div className="bg-[#F8FAF7] border border-slate-200 rounded-xl px-5 py-3 text-center min-w-[130px]">
+              <div className="text-[11px] font-semibold text-slate-500 flex items-center justify-center space-x-1">
+                <Percent className="w-3 h-3 text-[#2E7D32]" />
                 <span>Confidence</span>
               </div>
-              <div className="text-2xl font-black text-emerald-400 mt-0.5">
+              <div className="text-2xl font-black text-[#2E7D32] mt-0.5">
                 {confidence}%
               </div>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full mt-1.5 overflow-hidden">
+              <div className="w-full bg-slate-200 h-1.5 rounded-full mt-1.5 overflow-hidden">
                 <div 
-                  className="bg-emerald-500 h-full rounded-full transition-all duration-1000"
+                  className="bg-[#2E7D32] h-full rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(confidence, 100)}%` }}
                 />
               </div>
@@ -84,11 +79,11 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
 
             {/* Severity Rating */}
             <div className={`border rounded-xl px-5 py-3 text-center min-w-[130px] ${sevStyle.bg} ${sevStyle.border}`}>
-              <div className="text-[11px] font-semibold text-slate-400">Severity Grade</div>
+              <div className="text-[11px] font-semibold text-slate-600">Severity Grade</div>
               <div className={`text-2xl font-black ${sevStyle.text} mt-0.5`}>
                 {result.severity || 'Moderate'}
               </div>
-              <div className="text-[10px] text-slate-400 mt-1">
+              <div className="text-[10px] text-slate-500 mt-1">
                 Area: {result.affected_leaf_area || '18%'}
               </div>
             </div>
@@ -96,102 +91,84 @@ export default function DiagnosisResult({ result, imagePreview, onOpenReport }) 
             {/* Print Report Trigger */}
             <button
               onClick={onOpenReport}
-              className="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 flex items-center space-x-2 transition-all shadow-sm h-full"
+              className="px-4 py-3 bg-[#193B2B] hover:bg-[#132E20] text-white text-xs font-semibold rounded-xl border border-transparent flex items-center space-x-2 transition-all shadow-sm h-full"
             >
-              <FileText className="w-4 h-4 text-emerald-400" />
-              <span>Agronomy Report</span>
+              <FileText className="w-4 h-4 text-[#4ADE80]" />
+              <span>Full Report</span>
             </button>
+
           </div>
         </div>
 
-        {/* Differential Diagnoses & Lesion Inspector */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-6 items-center">
+        {/* Diagnosis Body: Image Preview & Top Predictions */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-6 items-start">
           
-          {/* Leaf & Heatmap Viewport */}
-          <div className="lg:col-span-5">
-            <div className="relative rounded-xl overflow-hidden border border-slate-800 aspect-[4/3] bg-black group">
+          {/* Leaf Visual & Lesion View */}
+          <div className="md:col-span-5 space-y-3">
+            <div className="relative rounded-xl overflow-hidden border border-slate-200 aspect-[4/3] bg-slate-50 flex items-center justify-center">
               <img
-                src={imagePreview}
-                alt="Analyzed leaf"
+                src={imagePreview || "/images/leaf_dropzone.jpg"}
+                alt="Diagnosed Paddy Leaf"
                 className="w-full h-full object-contain"
               />
-              
-              {/* Simulated Heatmap / Attention Overlay */}
               {showHeatmap && !isHealthy && (
-                <div className="absolute inset-0 bg-gradient-to-tr from-rose-500/40 via-amber-500/30 to-transparent mix-blend-color-dodge animate-lesion pointer-events-none">
-                  <div className="absolute top-1/4 left-1/3 w-28 h-20 bg-rose-600/50 rounded-full blur-xl"></div>
-                  <div className="absolute bottom-1/3 right-1/4 w-24 h-16 bg-amber-500/60 rounded-full blur-lg"></div>
-                </div>
-              )}
-
-              {/* View Overlay Toggle */}
-              {!isHealthy && (
-                <div className="absolute bottom-3 right-3 flex items-center space-x-1.5 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-700/80 text-xs">
-                  <Eye className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-slate-300 font-medium">CAM Heatmap</span>
-                  <button
-                    onClick={() => setShowHeatmap(!showHeatmap)}
-                    className={`ml-1.5 w-8 h-4 rounded-full transition-colors relative ${
-                      showHeatmap ? 'bg-emerald-500' : 'bg-slate-700'
-                    }`}
-                  >
-                    <div className={`w-3 h-3 rounded-full bg-white transition-transform ${
-                      showHeatmap ? 'translate-x-4' : 'translate-x-0.5'
-                    }`} />
-                  </button>
+                <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/30 via-rose-500/40 to-transparent mix-blend-color-burn pointer-events-none animate-lesion flex items-center justify-center">
+                  <div className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] font-mono text-amber-300">
+                    Grad-CAM Attention Area
+                  </div>
                 </div>
               )}
             </div>
-            <p className="text-[11px] text-slate-500 mt-2 text-center">
-              {showHeatmap 
-                ? 'Class Activation Map (CAM): Highlighting lesion attention areas' 
-                : 'Paddy leaf optical RGB photograph in 224x224 tensor resolution'}
-            </p>
+
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => setShowHeatmap(!showHeatmap)}
+                className={`text-xs px-3 py-1.5 rounded-lg border font-medium flex items-center space-x-1.5 transition-colors ${
+                  showHeatmap 
+                    ? 'bg-amber-100 text-amber-800 border-amber-300' 
+                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200'
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>{showHeatmap ? 'Hide Pathology Heatmap' : 'Overlay Grad-CAM Heatmap'}</span>
+              </button>
+              <span className="text-[11px] text-slate-400 font-mono">224x224 RGB</span>
+            </div>
           </div>
 
-          {/* Differential Top-3 Probabilities */}
-          <div className="lg:col-span-7 space-y-4">
+          {/* Clinical Description & Top 3 Classification Probabilities */}
+          <div className="md:col-span-7 space-y-4">
             <div>
-              <h3 className="text-sm font-bold text-white flex items-center space-x-2">
-                <Activity className="w-4 h-4 text-emerald-400" />
-                <span>Differential Diagnosis Ranking (Top-3 Probabilities)</span>
-              </h3>
-              <p className="text-xs text-slate-400">
-                Multi-class classification distribution from the 17-pathology head
+              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                Agronomic Pathology Assessment
+              </h4>
+              <p className="text-sm text-slate-700 mt-1.5 leading-relaxed">
+                {result.description || "Infection manifests as distinct chlorotic streaks with irregular water-soaked margins, typically progressing along longitudinal veins."}
               </p>
             </div>
 
-            <div className="space-y-3">
-              {(result.top_predictions || []).map((pred, idx) => (
-                <div key={idx} className="bg-slate-950/60 border border-slate-800 rounded-xl p-3.5">
-                  <div className="flex justify-between items-center mb-1.5 text-xs">
-                    <span className="font-semibold text-slate-200">
-                      {idx + 1}. {pred.class_name}
-                    </span>
-                    <span className="font-mono font-bold text-emerald-400">
-                      {(pred.percentage || (pred.probability * 100)).toFixed(2)}%
-                    </span>
+            {/* Probability Breakdown */}
+            <div className="pt-2">
+              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">
+                Top Probabilistic Predictions
+              </h4>
+              <div className="space-y-2">
+                {result.top_predictions?.map((pred, i) => (
+                  <div key={i} className="space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="font-semibold text-slate-800">{pred.class_name}</span>
+                      <span className="font-mono text-slate-600">{pred.percentage}%</span>
+                    </div>
+                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all duration-700 ${
+                          i === 0 ? 'bg-[#2E7D32]' : 'bg-slate-400'
+                        }`}
+                        style={{ width: `${pred.percentage}%` }}
+                      />
+                    </div>
                   </div>
-                  <div className="w-full bg-slate-800/80 h-2 rounded-full overflow-hidden">
-                    <div 
-                      className={`h-full rounded-full transition-all duration-800 ${
-                        idx === 0 ? 'bg-gradient-to-r from-emerald-500 to-green-400' : 'bg-slate-600'
-                      }`}
-                      style={{ width: `${pred.percentage || (pred.probability * 100)}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Urgency note */}
-            <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-slate-300 flex items-start space-x-2.5">
-              <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <span className="font-bold text-amber-300">Agronomic Triage Advisory: </span>
-                {isHealthy 
-                  ? "Leaf displays optimal photosynthetic vitality. Maintain routine preventive pest-scouting."
-                  : "Immediate clinical intervention is recommended to avoid secondary infection spread across adjacent paddy hills."}
+                ))}
               </div>
             </div>
 
